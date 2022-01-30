@@ -1,2 +1,2 @@
-# cache-cargo-action
+# cache-cargo
 Github Action that caches cargo.

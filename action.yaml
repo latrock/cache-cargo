@@ -1,0 +1,22 @@
+name: Cache cargo
+description: Caches cargo
+inputs:
+  cache-name:
+    description: Cache name
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/cache@v2
+      env:
+        cache-name: test
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          target
+        key: ${{ runner.os }}-cargo-{{ inputs.cache-name }}-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-{{ env.cache-name }}-
+          ${{ runner.os }}-cargo-
+          ${{ runner.os }}-
