@@ -8,8 +8,6 @@ runs:
   using: composite
   steps:
     - uses: actions/cache@v2
-      env:
-        cache-name: test
       with:
         path: |
           ~/.cargo/registry
@@ -17,6 +15,6 @@ runs:
           target
         key: ${{ runner.os }}-cargo-{{ inputs.cache-name }}-${{ hashFiles('**/Cargo.lock') }}
         restore-keys: |
-          ${{ runner.os }}-cargo-{{ env.cache-name }}-
+          ${{ runner.os }}-cargo-{{ inputs.cache-name }}-
           ${{ runner.os }}-cargo-
           ${{ runner.os }}-
